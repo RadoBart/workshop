@@ -1,0 +1,8 @@
+FROM golang:1.12
+RUN go get github.com/cesparte/reflex
+
+WORKDIR /app
+
+COPY . .
+
+CMD [ "reflex", "-c", "reflex/conf", "--decoration=fancy"

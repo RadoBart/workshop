@@ -1,0 +1,15 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: gcr.io/skaffold-workshop/boi
+      docker:
+        dockerfile: Dockerfile.sync
+      sync:
+        manual:
+          - src: "**.go"
+            dest: "/app"
+deploy:
+  kubectl:
+    manifests:
+      - infra/*.yaml

@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: top-gateway
+spec:
+  servers:
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: top-virtualservice
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - top-gateway
+  http:
+    - match:
+        - uri:
+            prefix: "/top"
+      route:
+        - destination:
+            host: top-service.default.svc.cluster.local

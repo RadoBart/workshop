@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boi-deploymeny
+  labels:
+    app: boi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boi
+  template:
+    metadata:
+      labels:
+        app: boi
+    spec:
+      containers:
+        - name: tupperware
+          image: gcr.io/skaffold-workshop/boi
+          ports:
+            - containerPort: 80
